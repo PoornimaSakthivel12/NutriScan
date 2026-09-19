@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  nutriscan-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nutriscan-ai-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/nutriscan.db:/app/backend/nutriscan.db
+      - ./backend/uploads:/app/backend/uploads
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0
+    restart: unless-stopped
